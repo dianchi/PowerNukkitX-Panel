@@ -13,8 +13,8 @@ import (
 	//"fyne.io/fyne/v2/widget"
 )
 
-func Runner(entry *widget.Entry) (io.ReadCloser, *bufio.Writer) {
-	cmd := exec.Command("tree")
+func Runner(entry *widget.Entry, startcommand string) (io.ReadCloser, *bufio.Writer) {
+	cmd := exec.Command(startcommand)
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
@@ -55,7 +55,7 @@ func GetOutput(reader *bufio.Reader, entry *widget.Entry) string {
 		//fmt.Print(output) //输出屏幕内容
 		sumOutput += output
 		entry.SetText(sumOutput)
-		entry.Refresh()
+		//entry.Refresh()
 	}
 	return sumOutput
 }
