@@ -6,10 +6,12 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/widget"
+
+	//"fyne.io/fyne/v2/theme"
 	//"fyne.io/fyne/v2/container"
 	//"fyne.io/fyne/v2/widget"
 	//"github.com/dianchi/PowerNukkitX-Panel/src"
+	"github.com/dianchi/PowerNukkitX-Panel/ui"
 	//"github.com/fyne-io/terminal"
 )
 
@@ -20,30 +22,16 @@ var Out string
 func main() {
 	a := app.New()
 	mainwindows := a.NewWindow("Hello")
-	//_, writer := src.Runner()
-	//writer.WriteString("tree")
-
-	downloadtext := widget.NewEntry()
-	downloader := container.NewVBox(downloadtext)
-
-	textentry := widget.NewMultiLineEntry()
-	textentry.Disable()
-
-	//src.Runner(textentry, "tree")
-	content := container.NewVBox(textentry)
-
+	mainmenu := ui.MainMenu(mainwindows)
+	downloadmenu := ui.DownloadMenu(mainwindows)
 	tabs := container.NewAppTabs(
-		container.NewTabItem("downloader", downloader),
-		container.NewTabItem("content", content),
+		container.NewTabItem("downloader", downloadmenu),
+		container.NewTabItem("content", mainmenu),
 	)
 
 	mainwindows.SetContent(tabs)
-
-	textentry.SetMinRowsVisible(10)
-
 	mainwindows.Resize(fyne.NewSize(800, 800))
 	mainwindows.SetFixedSize(true)
-	//src.Runner(w)
 	mainwindows.ShowAndRun()
 
 }
