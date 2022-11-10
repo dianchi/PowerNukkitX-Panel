@@ -1,27 +1,41 @@
 package main
 
 import (
+	"fmt"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
-
+	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/widget"
+	"github.com/dianchi/PowerNukkitX-Panel/src"
 	//"fyne.io/fyne/v2/container"
 	//"fyne.io/fyne/v2/widget"
 	//"github.com/dianchi/PowerNukkitX-Panel/src"
-	//"github.com/dianchi/PowerNukkitX-Panel/src"
-	"github.com/fyne-io/terminal"
+	//"github.com/fyne-io/terminal"
 )
 
 // go build -ldflags -H=windowsgui
+var channel = make(chan string)
+var Out string
+
 func main() {
 	a := app.New()
 	w := a.NewWindow("Hello")
-	t := terminal.New()
-	w.SetContent(t)
-	//stdout, stdin := src.Runner()
+	//_, writer := src.Runner()
+	//writer.WriteString("tree")
+	src.Runner(channel)
+	textentry := widget.NewMultiLineEntry()
+	textentry.Disable()
+
 	go func() {
-		_ = t.RunLocalShell()
-		a.Quit()
+		Out += <-channel
+		textentry.SetText(Out)
+		textentry.Refresh()
 	}()
+	//textentry.SetText(Out)
+	fmt.Println("Hello \n" + Out)
+	content := container.NewVBox(textentry)
+	w.SetContent(content)
 	//hello := widget.NewLabel("Hello Fyne!")
 	//w.SetContent(container.NewVBox(
 	//	hello,
@@ -30,8 +44,8 @@ func main() {
 	//	}),
 	//))
 
-	w.Resize(fyne.NewSize(400, 200))
-	w.FixedSize()
+	w.Resize(fyne.NewSize(800, 800))
+	w.SetFixedSize(true)
 	//src.Runner(w)
 	w.ShowAndRun()
 
