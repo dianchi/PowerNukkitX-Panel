@@ -6,11 +6,14 @@ import (
 	"io"
 	"log"
 	"os/exec"
+
+	"fyne.io/fyne/v2/widget"
+	//"fyne.io/fyne/widget"
 	//"fyne.io/fyne/v2"
 	//"fyne.io/fyne/v2/widget"
 )
 
-func Runner(channel chan string) (io.ReadCloser, *bufio.Writer) {
+func Runner(entry *widget.Entry) (io.ReadCloser, *bufio.Writer) {
 	cmd := exec.Command("tree")
 
 	stdout, err := cmd.StdoutPipe()
@@ -29,12 +32,13 @@ func Runner(channel chan string) (io.ReadCloser, *bufio.Writer) {
 	readerr := bufio.NewReader(stdout)
 	writer := bufio.NewWriter(stdin)
 	go func() {
-		channel <- GetOutput(readerr, channel)
+		GetOutput(readerr, entry)
 	}()
+	//writer.Write()
 	return stdout, writer
 }
 
-func GetOutput(reader *bufio.Reader, channel chan string) string {
+func GetOutput(reader *bufio.Reader, entry *widget.Entry) string {
 	var sumOutput string
 	outputBytes := make([]byte, 200)
 	for {
@@ -47,8 +51,11 @@ func GetOutput(reader *bufio.Reader, channel chan string) string {
 			sumOutput += err.Error()
 		}
 		output := string(outputBytes[:n])
+
 		//fmt.Print(output) //输出屏幕内容
 		sumOutput += output
+		entry.SetText(sumOutput)
+		entry.Refresh()
 	}
 	return sumOutput
 }

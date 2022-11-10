@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -15,7 +15,7 @@ import (
 )
 
 // go build -ldflags -H=windowsgui
-var channel = make(chan string)
+//var channel = make(chan string)
 var Out string
 
 func main() {
@@ -23,17 +23,12 @@ func main() {
 	w := a.NewWindow("Hello")
 	//_, writer := src.Runner()
 	//writer.WriteString("tree")
-	src.Runner(channel)
+
 	textentry := widget.NewMultiLineEntry()
 	textentry.Disable()
-
-	go func() {
-		Out += <-channel
-		textentry.SetText(Out)
-		textentry.Refresh()
-	}()
+	src.Runner(textentry)
 	//textentry.SetText(Out)
-	fmt.Println("Hello \n" + Out)
+	//fmt.Println("Hello \n" + Out)
 	content := container.NewVBox(textentry)
 	w.SetContent(content)
 	//hello := widget.NewLabel("Hello Fyne!")
