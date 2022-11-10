@@ -1,25 +1,26 @@
 package main
 
 import (
-	//"fmt"
-
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
-
-	//"fyne.io/fyne/v2/theme"
-	//"fyne.io/fyne/v2/container"
-	//"fyne.io/fyne/v2/widget"
-	//"github.com/dianchi/PowerNukkitX-Panel/src"
 	"github.com/dianchi/PowerNukkitX-Panel/ui"
-	//"github.com/fyne-io/terminal"
 )
+
+//"fmt"
+//"fyne.io/fyne/v2/theme"
+//"fyne.io/fyne/v2/container"
+//"fyne.io/fyne/v2/widget"
+//"github.com/dianchi/PowerNukkitX-Panel/src"
+
+//"github.com/fyne-io/terminal"
 
 // go build -ldflags -H=windowsgui
 //var channel = make(chan string)
 var Out string
 
 func main() {
+
 	a := app.New()
 	mainwindows := a.NewWindow("Hello")
 	mainmenu := ui.MainMenu(mainwindows)
