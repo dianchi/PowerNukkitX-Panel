@@ -34,7 +34,6 @@ func periodDashSplit(s string) []string {
 }
 
 func GreaterThan(a, b string) bool {
-	b = "17.0.1"
 	a = stripMetadata(a)
 	b = stripMetadata(b)
 
