@@ -39,6 +39,7 @@ func init() {
 	}
 	os.Setenv("FYNE_FONT", fontPath)
 }
+
 func main() {
 	a := app.New()
 	mainwindows := a.NewWindow("PowerNukkitX面板")
