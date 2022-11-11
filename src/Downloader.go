@@ -17,7 +17,7 @@ func Downloader(targeturl string, exname string) {
 	uri, _ := url.ParseRequestURI(targeturl)
 
 	filename := path.Base(uri.Path)
-	log.Println("[*] 文件名称 " + filename)
+	//log.Println("[*] 文件名称 " + filename)
 
 	client := http.DefaultClient
 	client.Timeout = time.Second * 60
@@ -26,7 +26,7 @@ func Downloader(targeturl string, exname string) {
 		panic(err)
 	}
 	if resp.ContentLength <= 0 {
-		log.Println("[*] 目标不支持文件下载")
+		//log.Println("[*] 目标不支持文件下载")
 	}
 	raw := resp.Body
 	defer raw.Close()
