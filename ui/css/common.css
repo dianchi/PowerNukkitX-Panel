@@ -1,0 +1,130 @@
+
+:root {
+    --darcula-bg-color: rgb(60, 63, 65);
+    --darcula-font-color: rgb(175, 177, 179);
+    --darcula-font-color-bright: white;
+    --darcula-font-color-lightblue: rgb(104, 151, 187);
+    --darcula-font-color-hyperlink: rgb(0, 122, 204);
+    --darcula-font-color-select-background: rgb(75, 110, 175);
+    --darcula-icon-color: rgb(175, 177, 179);
+    --darcula-line-color: rgb(81, 81, 81);
+
+    --darcula-scrollbar-color-bg: rgba(84, 88, 89, 0.5);
+    --darcula-scrollbar-color-fg: rgba(175, 177, 179, 0.5);
+    --darcula-scrollbar-color-fg-selected: rgba(175, 177, 179, 0.9);
+
+    --darcula-btn-color-bg: rgb(76, 80, 82);
+    --darcula-btn-color-border: rgb(94, 96, 96);
+    --darcula-btn-color-shade: rgb(61, 97, 133);
+    --darcula-btn-color-bg-highlight: rgb(54, 88, 128);
+    --darchla-btn-color-border-highlight: rgb(76, 112, 140);
+
+    --darcula-input-color-border: rgb(94, 96, 96);
+    --darcula-input-color-bg: rgb(69, 73, 74);
+    --darcula-input-color-shade: rgb(61, 97, 133);
+}
+
+body {
+    background-color: var(--darcula-bg-color);
+    margin: 0 0 0 0;
+}
+
+*::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--darcula-scrollbar-color-fg);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--darcula-scrollbar-color-fg-selected);
+}
+
+*::-webkit-scrollbar:hover {
+    background-color: var(--darcula-scrollbar-color-bg);
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: var(--darcula-line-color);
+}
+
+* {
+    color: var(--darcula-font-color);
+    font-family: "Segoe UI", "Segoe UI Symbol", system-ui;
+}
+
+*::selection {
+    background-color: var(--darcula-font-color-select-background);
+}
+
+button {
+    padding: 2px 24px 2px 24px;
+    border-radius: 4px;
+    min-height: 26px;
+    min-width: 72px;
+    border-width: 2px;
+    border-color: var(--darcula-btn-color-border);
+    border-style: solid;
+    background-color: var(--darcula-btn-color-bg);
+    font-size: 12px;
+    transition: all 80ms;
+}
+
+button.highlight {
+    border-color: var(--darchla-btn-color-border-highlight);
+    background-color: var(--darcula-btn-color-bg-highlight);
+}
+
+button.strong {
+    font-weight: bold;
+}
+
+button:active {
+    border-color: var(--darcula-btn-color-shade);
+    box-shadow: 0 0 0 2px var(--darcula-btn-color-shade);
+}
+
+input {
+    background-color: var(--darcula-input-color-bg);
+    border: var(--darcula-input-color-border) solid 1px;
+    border-radius: 2px;
+    padding: 2px 4px 2px 4px;
+    min-height: 18px;
+    font-size: 12px;
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--darcula-input-color-shade);
+    box-shadow: 0 0 0 2px var(--darcula-input-color-shade);
+}
+
+/*noinspection CssUnknownTarget*/
+input[type=search] {
+    background-image: url("pnx://bundle/image/search.svg");
+    background-repeat: no-repeat;
+    background-size: 12px;
+    background-position-y: center;
+    background-position-x: 6px;
+    text-indent: 20px;
+}
+
+input[type=checkbox] {
+    width: 16px;
+    height: 14px;
+    vertical-align: middle;
+    appearance: inherit;
+}
+
+input[type=checkbox]:checked:before {
+    content: "∟";
+    transform: rotate(225deg) translateX(2px) translateY(6px) scaleY(-1);
+    font-weight: bolder;
+    display: block;
+    overflow: hidden;
+    font-size: 16px;
+}

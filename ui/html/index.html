@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/ui/css/common.css">
+    <script defer="defer" src="/ui/libs/js/alpine.js"></script>
+</head>
+<body>
+<h1>Hello PNX</h1>
+<hr>
+<div x-data>
+    <p>现在是：<span x-text="String($store.timerData.time)"></span></p>
+</div>
+<script>document.addEventListener('alpine:init', () => {
+    Alpine.store('timerData', {
+        time: new Date()
+    })
+    setInterval(() => {
+        Alpine.store('timerData', {
+            time: new Date()
+        })
+    }, 1000);
+})
+
+</script>
+<hr>
+<button>取消</button>
+<button class="highlight">确定</button>
+<button class="highlight strong">真的确定</button>
+<label>
+    <input type="checkbox" value=""/>
+</label>
+<br><br>
+<label>
+    <input value=""/>
+</label>
+<br><br>
+<label>
+    <input value="" placeholder="占位符"/>
+</label>
+<br><br>
+<label>
+    <input value="" type="search" placeholder="搜索"/>
+</label>
+<br><br>
+</body>
+</html>
